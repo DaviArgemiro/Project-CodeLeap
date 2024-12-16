@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/postStyle.css' %}">
+    <title>Confirm Page</title>
+</head>
+<body>
+    
+    <div id="divModalDelete" class="">
+        <div id="modal">
+            <p><strong>Are you sure you want to delete this item?</strong></p>
+            <div id="buttons">
+                <form method="post" action="{% url 'delete_post' post.id %}">{% csrf_token %}
+                    <a href="{% url 'post_list' post.username %}"><button id="buttonCancel" onclick="CancelButton()" type="button"><strong>Cancel</strong></button></a>
+                    <button id="buttonDelete" type="submit">Delete</button>
+                </form> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

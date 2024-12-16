@@ -1,0 +1,71 @@
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/postStyle.css' %}">
+    <title>Post Page</title>
+</head>
+<body>
+    <main>
+        <div id="head">
+            <p><strong>CodeLeap Network</strong></p>
+        </div>
+
+        <div id="userBox">
+            <h1><strong>What's on your mind?</strong></h1>
+
+
+            <form action="{% url 'new_post' %}" method="post"> {% csrf_token %}
+            <div id="titleInput">
+                <p>Title</p>
+                <input type="hidden" value="{{ user }}" name="user">
+                <input type="text" placeholder="Hello World" name="title">
+            </div>
+
+            <div id="contentInput">
+                <p>Content</p>
+                    <input type="text" placeholder="Content Here" name="content">
+                    <button><strong>Create</strong></button>
+            </div>
+        </form>
+        </div>
+
+        {% if posts %}
+            {% for post in posts %}
+                <div id="posts">
+                    <div id="options">
+                        <p><strong>{{ post.title }}</strong></p>
+
+                        {% if user == post.username %}
+                            <div>
+                                <a href="{% url 'confirm_del' post.id %}"><img src="{% static 'img/trashicon.png'%}" alt=""></a>
+                                <a href="{% url 'confirm_edit' post.id %}"><img src="{% static 'img/editIcon.png'%}" alt=""></a>
+                            </div>
+                        {% endif %}
+                    </div>
+                                    
+                    <div id="contentBox">
+                        <div id="userInfo">
+                            <p>@{{ post.username }}</p>
+                            <p>{{ post.create_datetime }}</p>
+                        </div>
+
+                        <div id="content">
+                            <p>{{ post.content }}</p>
+                        </div>
+                    </div>
+                        
+                </div>
+            {% endfor %}
+        {% endif %}
+    </main>
+
+    <script src="{% static 'js/editDeleteScript.js' %}"></script>
+</body>
+</html>
+
+{% endblock %}

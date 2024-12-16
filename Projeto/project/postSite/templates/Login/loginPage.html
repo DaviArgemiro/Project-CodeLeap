@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/loginStyle.css' %}">
+    <title>CodeLeap Project</title>
+</head>
+<body>
+    <main>
+        <div id="model">
+            <p id="WelcomeText">
+                <strong>Welcome to CodeLeap network!</strong>
+            </p>
+
+            <div>
+                <p>
+                    Please enter your username
+                </p>
+
+                <form method="post" action="{% url 'login' %}"> {% csrf_token %}
+                    <input type="text" placeholder="John doe" id="input" name="user">
+            
+                    <button id="botao" onclick="cliquei()">
+                        <strong>ENTER</strong>
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+    </main>
+</body>
+<script src="{% static 'js/deactiveButtonScript.js' %}"></script>
+</html>
