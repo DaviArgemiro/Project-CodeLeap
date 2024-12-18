@@ -21,7 +21,7 @@
                 </p>
 
                 <form method="post" action="{% url 'login' %}"> {% csrf_token %}
-                    <input type="text" placeholder="John doe" id="input" name="user">
+                    {{ login_form.username }}
             
                     <button id="botao" onclick="cliquei()">
                         <strong>ENTER</strong>
@@ -32,5 +32,4 @@
         </div>
     </main>
 </body>
-<script src="{% static 'js/deactiveButtonScript.js' %}"></script>
 </html>

@@ -17,7 +17,7 @@
                 <form  method="post" action="{% url 'edit_post' post.id %}"> {% csrf_token %}
                     <div id="titleInput">
                         <p>Title</p>
-                        <input type="hidden" value="{{ user }}" name="user">
+                        <input type="hidden" value="{{ user.username }}" name="username">
                         <input type="text" placeholder="Hello World" name="title">
                     </div>
 
@@ -27,7 +27,7 @@
                     </div>
 
                     <div id="buttons">
-                        <a href="{% url 'post_list' post.username %}"><button id="buttonCancel" onclick="CancelButton()" type="button"><strong>Cancel</strong></button></a>
+                        <a href="{% url 'post_list' %}"><button id="buttonCancel" onclick="CancelButton()" type="button"><strong>Cancel</strong></button></a>
                         <button id="buttonSave">Save</button>
                     </div>
                 </form>
